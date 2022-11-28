@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.f4dc0c59.css","mappings":"AAAA,SACE,YAAa,CACb,qBAAsB","sources":["styles/layout/page.scss"],"sourcesContent":[".section {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n"],"names":[],"sourceRoot":""}
