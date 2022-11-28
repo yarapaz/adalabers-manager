@@ -74,11 +74,16 @@ function App() {
       .filter((eachAdalaber) =>
         eachAdalaber.name.toLowerCase().includes(searchName.toLowerCase())
       )
-      .filter((eachAdalaber) =>
-        eachAdalaber.counselor
-          .toLowerCase()
-          .includes(searchCounselor.toLowerCase())
-      )
+      .filter((eachAdalaber) => {
+        if (searchCounselor === '') {
+          return true;
+        } else {
+          return (
+            eachAdalaber.counselor.toLowerCase() ===
+            searchCounselor.toLowerCase()
+          );
+        }
+      })
       .map((eachAdalaber) => {
         return (
           <tr key={eachAdalaber.id} className='row'>
