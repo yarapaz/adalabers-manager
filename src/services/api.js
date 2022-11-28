@@ -6,6 +6,7 @@ const callToApi = () => {
     .then((data) => {
       const adalabersList = data.results.map((eachData) => {
         const adalaber = {
+          id: eachData.id,
           name: eachData.name,
           counselor: eachData.counselor,
           speciality: eachData.speciality,
