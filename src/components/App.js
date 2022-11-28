@@ -11,6 +11,8 @@ function App() {
     counselor: '',
     speciality: '',
   });
+  const [searchName, setSearchName] = useState('');
+  const [searchCounselor, setSearchCounselor] = useState('');
 
   //Effects
   useEffect(() => {
@@ -33,17 +35,54 @@ function App() {
     setAdalabers([...adalabers]);
   };
 
+  const handleSearchName = (ev) => {
+    setSearchName(ev.target.value);
+  };
+
+  const handleSearchCounselor = (ev) => {
+    setSearchCounselor(ev.target.value);
+  };
+
   //Render Helpers
+
+  const renderSocialNetworks = (adalaberId) => {
+    const foundAdalaber = adalabers.find(
+      (eachAdalaber) => eachAdalaber.id === adalaberId
+    );
+    const socialNetworks = foundAdalaber.social_networks.map(
+      (eachNetwork, i) => {
+        return (
+          <li key={i}>
+            <a href={eachNetwork.url}>{eachNetwork.name}</a>
+          </li>
+        );
+      }
+    );
+    return socialNetworks;
+  };
+
   const renderAdalabers = () => {
-    const AdalabersList = adalabers.map((eachAdalaber) => {
-      return (
-        <tr key={eachAdalaber.id}>
-          <td>{eachAdalaber.name}</td>
-          <td>{eachAdalaber.counselor}</td>
-          <td>{eachAdalaber.speciality}</td>
-        </tr>
-      );
-    });
+    const AdalabersList = adalabers
+      .filter((eachAdalaber) =>
+        eachAdalaber.name.toLowerCase().includes(searchName.toLowerCase())
+      )
+      .filter((eachAdalaber) =>
+        eachAdalaber.counselor
+          .toLowerCase()
+          .includes(searchCounselor.toLowerCase())
+      )
+      .map((eachAdalaber) => {
+        return (
+          <tr key={eachAdalaber.id}>
+            <td>{eachAdalaber.name}</td>
+            <td>{eachAdalaber.counselor}</td>
+            <td>{eachAdalaber.speciality}</td>
+            <td>
+              <ul>{renderSocialNetworks(eachAdalaber.id)}</ul>
+            </td>
+          </tr>
+        );
+      });
     return AdalabersList;
   };
 
@@ -51,46 +90,75 @@ function App() {
     <>
       <main>
         <h1>Adalabers</h1>
+        <form action='' onSubmit={handleSubmit}>
+          <label htmlFor='searchName'>Nombre:</label>
+          <input
+            type='text'
+            name='searchName'
+            id='searchName'
+            placeholder='Ej: MariCarmen'
+            value={searchName}
+            onChange={handleSearchName}
+          />
+          <label htmlFor='searchCounselor'>Escoge una tutora:</label>
+          <select
+            name='searchCounselor'
+            id='searchCounselor'
+            value={searchCounselor}
+            onChange={handleSearchCounselor}
+          >
+            <option value=''>Cualquiera</option>
+            <option value='Yanelis'>Yanelis</option>
+            <option value='Dayana'>Dayana</option>
+            <option value='Iván'>Iván</option>
+          </select>
+        </form>
         <section className='section'>
-          <table className='table'>
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Tutora</th>
-                <th>Especialidad</th>
-              </tr>
-            </thead>
-            <tbody>{renderAdalabers()}</tbody>
-          </table>
-          <form action='' onSubmit={handleSubmit}>
-            <label htmlFor='name'>Name</label>
-            <input
-              name='name'
-              id='name'
-              type='text'
-              value={newAdalaber.name}
-              onChange={handleInput}
-            />
-            <label htmlFor='counselor'>Counselor</label>
-            <input
-              name='counselor'
-              id='counselor'
-              type='text'
-              value={newAdalaber.counselor}
-              onChange={handleInput}
-            />
-            <label htmlFor='speciality'>Speciality</label>
-            <input
-              name='speciality'
-              id='speciality'
-              type='text'
-              value={newAdalaber.speciality}
-              onChange={handleInput}
-            />
-            <button type='button' onClick={handleNewAdalaber}>
-              Add New Adalaber
-            </button>
-          </form>
+          <article>
+            <table className='table'>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Tutora</th>
+                  <th>Especialidad</th>
+                  <th>Redes</th>
+                </tr>
+              </thead>
+              <tbody>{renderAdalabers()}</tbody>
+            </table>
+          </article>
+          <article>
+            <h2>Añadir una nueva Adalaber</h2>
+            <form action='' onSubmit={handleSubmit}>
+              <label htmlFor='name'>Nombre</label>
+              <input
+                name='name'
+                id='name'
+                type='text'
+                value={newAdalaber.name}
+                onChange={handleInput}
+              />
+              <label htmlFor='counselor'>Tutora</label>
+              <input
+                name='counselor'
+                id='counselor'
+                type='text'
+                value={newAdalaber.counselor}
+                onChange={handleInput}
+              />
+              <label htmlFor='speciality'>Especialidad</label>
+              <input
+                name='speciality'
+                id='speciality'
+                type='text'
+                value={newAdalaber.speciality}
+                onChange={handleInput}
+              />
+              <button type='button' onClick={handleNewAdalaber}>
+                Añadir una nueva adalaber
+              </button>
+            </form>
+          </article>
         </section>
       </main>
     </>
