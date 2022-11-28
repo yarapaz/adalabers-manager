@@ -1,0 +1,9 @@
+.form__Search {
+  width: 450px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-gap: 20px;
+  color: grey;
+  margin-right: 50px;
+}
