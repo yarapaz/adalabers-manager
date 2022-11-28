@@ -5,7 +5,12 @@ import callToApi from '../services/api';
 function App() {
   //States
   const [adalabers, setAdalabers] = useState([]);
-  const [newAdalaber, setNewAdalaber]
+  const [newAdalaber, setNewAdalaber] = useState({
+    id: crypto.randomUUID(),
+    name: '',
+    counselor: '',
+    speciality: '',
+  });
 
   //Effects
   useEffect(() => {
@@ -19,8 +24,13 @@ function App() {
     ev.preventDefault();
   };
 
-  const handleNewAdalaber = () => {
+  const handleInput = (ev) => {
+    setNewAdalaber({ ...newAdalaber, [ev.target.name]: ev.target.value });
+  };
 
+  const handleNewAdalaber = () => {
+    adalabers.unshift(newAdalaber);
+    setAdalabers([...adalabers]);
   };
 
   //Render Helpers
@@ -54,11 +64,29 @@ function App() {
           </table>
           <form action='' onSubmit={handleSubmit}>
             <label htmlFor='name'>Name</label>
-            <input name='name' id='name' type='text' />
+            <input
+              name='name'
+              id='name'
+              type='text'
+              value={newAdalaber.name}
+              onChange={handleInput}
+            />
             <label htmlFor='counselor'>Counselor</label>
-            <input name='counselor' id='counselor' type='text' />
+            <input
+              name='counselor'
+              id='counselor'
+              type='text'
+              value={newAdalaber.counselor}
+              onChange={handleInput}
+            />
             <label htmlFor='speciality'>Speciality</label>
-            <input name='speciality' id='speciality' type='text' />
+            <input
+              name='speciality'
+              id='speciality'
+              type='text'
+              value={newAdalaber.speciality}
+              onChange={handleInput}
+            />
             <button type='button' onClick={handleNewAdalaber}>
               Add New Adalaber
             </button>
