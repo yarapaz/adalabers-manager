@@ -32,11 +32,15 @@ function App() {
   };
 
   const handleNewAdalaber = () => {
-    debugger;
-    console.log(newAdalaber);
     adalabers.unshift(newAdalaber);
     setAdalabers([...adalabers]);
-    console.log(adalabers);
+    setNewAdalaber({
+      id: crypto.randomUUID(),
+      name: '',
+      counselor: '',
+      speciality: '',
+      social_networks: [],
+    });
   };
 
   const handleSearchName = (ev) => {
