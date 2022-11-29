@@ -1,9 +1,26 @@
-.form__Search {
-  width: 450px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  grid-gap: 20px;
-  color: grey;
-  margin-right: 50px;
+.form {
+  &__Search {
+    width: 450px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-gap: 20px;
+    margin-right: 50px;
+    margin-top: 50px;
+  }
+  &__label {
+    font-weight: 900;
+    color: rgb(26, 72, 121);
+  }
+  &__input {
+    color: rgb(26, 72, 121);
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(185, 208, 234);
+    padding: 5px;
+    &::placeholder {
+      color: rgb(26, 72, 121);
+      opacity: 0.6;
+    }
+  }
 }

@@ -1,0 +1,87 @@
+.addForm {
+  width: 450px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-gap: 20px;
+  color: rgb(26, 72, 121);
+  font-weight: 700;
+  margin-right: 50px;
+  margin-bottom: 100px;
+  &__label {
+    font-weight: 900;
+    color: rgb(26, 72, 121);
+  }
+  &__input {
+    color: rgb(26, 72, 121);
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(185, 208, 234);
+    padding: 5px;
+  }
+  &__btn {
+    color: rgb(26, 72, 121);
+    background-color: rgb(185, 208, 234);
+    border: none;
+    border-radius: 50px;
+    padding: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    &:hover {
+      background-color: rgb(121, 155, 195);
+      transform: scale(1.2);
+      transition: 1s ease-in-out;
+    }
+  }
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 85px;
+}
+
+.table {
+  width: 1000px;
+  margin-right: 300px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border: none;
+  border-collapse: collapse;
+  padding: 10px;
+  border-radius: 1em;
+  overflow: hidden;
+  &__head {
+    border: none;
+    border-collapse: collapse;
+    padding: 10px;
+    background-color: rgb(51, 98, 148);
+    color: rgb(197, 224, 245);
+    &__column {
+      padding: 20px;
+      background-color: rgb(46, 103, 163);
+      color: white;
+      font-size: 1.2rem;
+    }
+  }
+  &__column {
+    padding: 18px;
+    background-color: rgb(188, 210, 233);
+    text-align: center;
+    color: rgb(34, 34, 146);
+  }
+  &__link {
+    text-decoration: none;
+    padding: 5px;
+    color: rgb(108, 77, 210);
+    cursor: pointer;
+  }
+}
+
+.fa-twitter,
+.fa-linkedin,
+.fa-github {
+  font-size: 1.3rem;
+  padding: 10px;
+}

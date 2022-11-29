@@ -1,15 +1,15 @@
-import '../styles/components/Table.scss';
+import '../styles/components/Adalabers.scss';
 
 function Table(props) {
   return (
     <article>
       <table className='table'>
-        <thead>
-          <tr className='row'>
-            <th className='column'>Nombre</th>
-            <th className='column'>Tutora</th>
-            <th className='column'>Especialidad</th>
-            <th className='column'>Redes</th>
+        <thead className='table__head'>
+          <tr className='table__row'>
+            <th className='table__head__column'>Nombre</th>
+            <th className='table__head__column'>Tutora</th>
+            <th className='table__head__column'>Especialidad</th>
+            <th className='table__head__column'>Redes</th>
           </tr>
         </thead>
         <tbody>{props.renderAdalabers()}</tbody>

@@ -1,42 +1,17 @@
 import '../styles/components/Search.scss';
+import SearchForm from './SearchForm';
 
 function Search(props) {
-  const onSubmit = (ev) => {
-    props.handleSubmit(ev);
-  };
-
-  const onChangeName = (ev) => {
-    props.handleSearchName(ev);
-  };
-
-  const onChangeCounselor = (ev) => {
-    props.handleSearchCounselor(ev);
-  };
-
   return (
-    <form className='form__Search' action='' onSubmit={onSubmit}>
-      <label htmlFor='searchName'>Nombre:</label>
-      <input
-        type='text'
-        name='searchName'
-        id='searchName'
-        placeholder='Ej: MariCarmen'
-        value={props.searchName}
-        onChange={onChangeName}
+    <article>
+      <SearchForm
+        handleSubmit={props.handleSubmit}
+        searchName={props.searchName}
+        searchCounselor={props.searchCounselor}
+        handleSearchName={props.handleSearchName}
+        handleSearchCounselor={props.handleSearchCounselor}
       />
-      <label htmlFor='searchCounselor'>Escoge una tutora:</label>
-      <select
-        name='searchCounselor'
-        id='searchCounselor'
-        value={props.searchCounselor}
-        onChange={onChangeCounselor}
-      >
-        <option value=''>Cualquiera</option>
-        <option value='Yanelis'>Yanelis</option>
-        <option value='Dayana'>Dayana</option>
-        <option value='Iván'>Iván</option>
-      </select>
-    </form>
+    </article>
   );
 }
 

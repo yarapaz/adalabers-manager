@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import '../styles/App.scss';
 import callToApi from '../services/api';
 import Search from './Search';
-import Table from './Table';
-import AddNew from './AddNew';
+import Adalabers from './Adalabers';
 
 function App() {
   //States
@@ -17,7 +16,6 @@ function App() {
   });
   const [searchName, setSearchName] = useState('');
   const [searchCounselor, setSearchCounselor] = useState('');
-  console.log(adalabers);
 
   //Effects
   useEffect(() => {
@@ -27,12 +25,12 @@ function App() {
   }, []);
 
   //Handlers
-  const handleSubmit = (ev) => {
-    ev.preventDefault();
+  const handleSubmit = (value) => {
+    value.preventDefault();
   };
 
-  const handleInput = (ev) => {
-    setNewAdalaber({ ...newAdalaber, [ev.target.name]: ev.target.value });
+  const handleInput = (value) => {
+    setNewAdalaber({ ...newAdalaber, [value.name]: value.value });
   };
 
   const handleNewAdalaber = () => {
@@ -46,28 +44,47 @@ function App() {
       social_networks: [],
     });
   };
-
-  const handleSearchName = (ev) => {
-    setSearchName(ev.target.value);
+  console.log(adalabers);
+  const handleSearchName = (value) => {
+    setSearchName(value);
   };
 
-  const handleSearchCounselor = (ev) => {
-    setSearchCounselor(ev.target.value);
+  const handleSearchCounselor = (value) => {
+    setSearchCounselor(value);
   };
 
   //Render Helpers
-
   const renderSocialNetworks = (adalaberId) => {
     const foundAdalaber = adalabers.find(
       (eachAdalaber) => eachAdalaber.id === adalaberId
     );
     const socialNetworks = foundAdalaber.social_networks.map(
       (eachNetwork, i) => {
-        return (
-          <li key={i}>
-            <a href={eachNetwork.url}>{eachNetwork.name}</a>
-          </li>
-        );
+        if (eachNetwork.name === 'GitHub') {
+          return (
+            <li key={i}>
+              <a href={eachNetwork.url}>
+                <i class='fa-brands fa-github'></i>
+              </a>
+            </li>
+          );
+        } else if (eachNetwork.name === 'LinkedIn') {
+          return (
+            <li key={i}>
+              <a href={eachNetwork.url}>
+                <i class='fa-brands fa-linkedin'></i>
+              </a>
+            </li>
+          );
+        } else if (eachNetwork.name === 'Twitter') {
+          return (
+            <li key={i}>
+              <a href={eachNetwork.url}>
+                <i class='fa-brands fa-twitter'></i>
+              </a>
+            </li>
+          );
+        }
       }
     );
     return socialNetworks;
@@ -90,11 +107,11 @@ function App() {
       })
       .map((eachAdalaber) => {
         return (
-          <tr key={eachAdalaber.id} className='row'>
-            <td className='column'>{eachAdalaber.name}</td>
-            <td className='column'>{eachAdalaber.counselor}</td>
-            <td className='column'>{eachAdalaber.speciality}</td>
-            <td className='column'>
+          <tr key={eachAdalaber.id} className='table__row'>
+            <td className='table__column'>{eachAdalaber.name}</td>
+            <td className='table__column'>{eachAdalaber.counselor}</td>
+            <td className='table__column'>{eachAdalaber.speciality}</td>
+            <td className='table__column'>
               <ul className='list'>{renderSocialNetworks(eachAdalaber.id)}</ul>
             </td>
           </tr>
@@ -108,24 +125,20 @@ function App() {
       <main>
         <h1 className='title'>Adalabers</h1>
         <section className='landing'>
-          <section>
-            <Search
-              handleSubmit={handleSubmit}
-              searchName={searchName}
-              searchCounselor={searchCounselor}
-              handleSearchName={handleSearchName}
-              handleSearchCounselor={handleSearchCounselor}
-            />
-          </section>
-          <section className='section'>
-            <Table renderAdalabers={renderAdalabers} />
-            <AddNew
-              handleSubmit={handleSubmit}
-              newAdalaber={newAdalaber}
-              handleInput={handleInput}
-              handleNewAdalaber={handleNewAdalaber}
-            />
-          </section>
+          <Search
+            handleSubmit={handleSubmit}
+            searchName={searchName}
+            searchCounselor={searchCounselor}
+            handleSearchName={handleSearchName}
+            handleSearchCounselor={handleSearchCounselor}
+          />
+          <Adalabers
+            renderAdalabers={renderAdalabers}
+            handleSubmit={handleSubmit}
+            newAdalaber={newAdalaber}
+            handleInput={handleInput}
+            handleNewAdalaber={handleNewAdalaber}
+          />
         </section>
       </main>
     </>
