@@ -5,7 +5,6 @@ function Search(props) {
   return (
     <article>
       <SearchForm
-        handleSubmit={props.handleSubmit}
         searchName={props.searchName}
         searchCounselor={props.searchCounselor}
         handleSearchName={props.handleSearchName}

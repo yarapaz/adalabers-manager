@@ -11,8 +11,12 @@ function SearchForm(props) {
     props.handleSearchCounselor(ev.target.value);
   };
 
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+  };
+
   return (
-    <form className='form__Search' action='' onSubmit={onSubmit}>
+    <form className='form__Search' action='' onSubmit={handleSubmit}>
       <label className='form__label' htmlFor='searchName'>
         Nombre:
       </label>

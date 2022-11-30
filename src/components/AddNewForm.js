@@ -11,10 +11,14 @@ function AddNew(props) {
     props.handleNewAdalaber();
   };
 
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+  };
+
   return (
     <article>
       <h2 className='subtitle'>Añadir una nueva Adalaber</h2>
-      <form className='addForm' action='' onSubmit={onSubmit}>
+      <form className='addForm' action='' onSubmit={handleSubmit}>
         <label className='addForm__label' htmlFor='name'>
           Nombre:
         </label>

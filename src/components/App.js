@@ -3,9 +3,12 @@ import '../styles/App.scss';
 import callToApi from '../services/api';
 import Search from './Search';
 import Adalabers from './Adalabers';
+import Header from './Header';
 
 function App() {
   //States
+  const [searchName, setSearchName] = useState('');
+  const [searchCounselor, setSearchCounselor] = useState('');
   const [adalabers, setAdalabers] = useState([]);
   const [newAdalaber, setNewAdalaber] = useState({
     id: crypto.randomUUID(),
@@ -14,8 +17,6 @@ function App() {
     speciality: '',
     social_networks: [],
   });
-  const [searchName, setSearchName] = useState('');
-  const [searchCounselor, setSearchCounselor] = useState('');
 
   //Effects
   useEffect(() => {
@@ -25,17 +26,18 @@ function App() {
   }, []);
 
   //Handlers
-  const handleSubmit = (value) => {
-    value.preventDefault();
-  };
 
   const handleInput = (value) => {
     setNewAdalaber({ ...newAdalaber, [value.name]: value.value });
   };
 
   const handleNewAdalaber = () => {
-    if (newAdalaber !== null) {
-      adalabers.unshift(newAdalaber);
+    if (
+      newAdalaber.name !== '' &&
+      newAdalaber.counselor !== '' &&
+      newAdalaber.speciality !== ''
+    ) {
+      adalabers.push(newAdalaber);
       setAdalabers([...adalabers]);
       setNewAdalaber({
         id: crypto.randomUUID(),
@@ -125,12 +127,9 @@ function App() {
   return (
     <>
       <main>
-        <header>
-          <h1 className='title'>Adalabers</h1>
-        </header>
+        <Header />
         <section className='landing'>
           <Search
-            handleSubmit={handleSubmit}
             searchName={searchName}
             searchCounselor={searchCounselor}
             handleSearchName={handleSearchName}
@@ -138,7 +137,6 @@ function App() {
           />
           <Adalabers
             renderAdalabers={renderAdalabers}
-            handleSubmit={handleSubmit}
             newAdalaber={newAdalaber}
             handleInput={handleInput}
             handleNewAdalaber={handleNewAdalaber}
