@@ -34,17 +34,19 @@ function App() {
   };
 
   const handleNewAdalaber = () => {
-    adalabers.unshift(newAdalaber);
-    setAdalabers([...adalabers]);
-    setNewAdalaber({
-      id: crypto.randomUUID(),
-      name: '',
-      counselor: '',
-      speciality: '',
-      social_networks: [],
-    });
+    if (newAdalaber !== null) {
+      adalabers.unshift(newAdalaber);
+      setAdalabers([...adalabers]);
+      setNewAdalaber({
+        id: crypto.randomUUID(),
+        name: '',
+        counselor: '',
+        speciality: '',
+        social_networks: [],
+      });
+    }
   };
-  console.log(adalabers);
+
   const handleSearchName = (value) => {
     setSearchName(value);
   };
@@ -123,7 +125,9 @@ function App() {
   return (
     <>
       <main>
-        <h1 className='title'>Adalabers</h1>
+        <header>
+          <h1 className='title'>Adalabers</h1>
+        </header>
         <section className='landing'>
           <Search
             handleSubmit={handleSubmit}
