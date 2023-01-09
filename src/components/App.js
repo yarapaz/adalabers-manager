@@ -126,7 +126,7 @@ function App() {
 
   return (
     <>
-      <main>
+      <main className='main'>
         <Header />
         <section className='landing'>
           <Search

@@ -1,3 +1,7 @@
+.main {
+  background-color: rgb(168, 168, 236);
+}
+
 .section {
   display: flex;
   flex-direction: column;
@@ -6,16 +10,16 @@
 .title {
   color: rgb(26, 72, 121);
   font-size: 4rem;
-  margin-left: 50px;
-  margin-top: 50px;
+  margin-left: 100px;
+  padding-top: 70px;
   font-weight: 800;
 }
 
 .landing {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
 }
 
 .subtitle {
